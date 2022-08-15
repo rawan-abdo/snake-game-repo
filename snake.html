@@ -5,7 +5,10 @@
 </head>
     <body>
         <div id = "score">0</div>
-        <canvas id="gameCanvas" width="300" height="300"></canvas>
+        <canvas id="gameCanvas" width="300" height ="300"></canvas>
+        <canvas id="leftCanvas" width="200" height ="500"></canvas>
+        <canvas id="rightCanvas" width="200" height ="500"></canvas>
+        
         <style>
             #gameCanvas {
               position: absolute;
@@ -13,7 +16,21 @@
               left: 50%;
               transform: translate(-50%, -50%);
             }
-      
+
+            #leftCanvas {
+              position: absolute;
+              top: 5%;
+              left: 5%;
+              transform: translate(25%, 0%);
+            }
+            
+            #rightCanvas {
+              position: absolute;
+              top: 5%;
+              left: 75%;
+              transform: translate(55%, 0%);
+            }
+
             #score {
               text-align: center;
               font-size: 140px;
@@ -44,10 +61,18 @@
 
         // Get the canvas element
         var gameCanvas = document.getElementById("gameCanvas");
-
         // Return a two dimensional drawing context
         var ctx = gameCanvas.getContext("2d");
+
+        var leftCanvas = document.getElementById("leftCanvas");
+        var lctx = leftCanvas.getContext("2d");
+
+        var rightCanvas = document.getElementById("rightCanvas");
+        var rctx = rightCanvas.getContext("2d");
         
+        makeLeftCanvas();
+        makeRightCanvas();
+
         clearCanvas();
         main();
         createFood();
@@ -74,6 +99,32 @@
             }, 100)
         }
         
+        function makeLeftCanvas(){
+        // Select the colour to fill the canvas
+        lctx.fillStyle = 'blue';
+        // Select the colour for the border of the canvas
+        lctx.strokestyle = 'black';
+
+        // Draw a "filled" rectangle to cover the entire canvas
+        lctx.fillRect(0, 0, leftCanvas.width, leftCanvas.height);
+
+        // Draw a border around the entire canvas
+        lctx.strokeRect(0, 0, leftCanvas.width, leftCanvas.height);
+        }
+
+        function makeRightCanvas(){
+        // Select the colour to fill the canvas
+        rctx.fillStyle = 'blue';
+        // Select the colour for the border of the canvas
+        rctx.strokestyle = 'black';
+
+        // Draw a "filled" rectangle to cover the entire canvas
+        rctx.fillRect(0, 0, rightCanvas.width, rightCanvas.height);
+
+        // Draw a border around the entire canvas
+        rctx.strokeRect(0, 0, rightCanvas.width, rightCanvas.height);
+        }
+
         function clearCanvas(){
         // Select the colour to fill the canvas
         ctx.fillStyle = CANVAS_BACKGROUND_COLOUR;
@@ -118,6 +169,7 @@
             const RIGHT_KEY = 39;
             const UP_KEY    = 38;
             const DOWN_KEY  = 40;
+            const SPACE_KEY = 32;
 
             if (isChangingDirection) return;
             isChangingDirection = true;
@@ -147,6 +199,12 @@
                 dx = 0;
                 dy = 10;
             }
+
+            if (keyPressed === SPACE_KEY){
+                dx = 0;
+                dy = 0;
+            }
+            
 
         }
 
