@@ -4,6 +4,7 @@
     <title> Snake Game</title>
 </head>
     <body>
+        <div id = "score">0</div>
         <canvas id="gameCanvas" width="300" height="300"></canvas>
         <script>
         /** constants **/
@@ -22,6 +23,7 @@
 
         let dx = 10;
         let dy = 0;
+        let score = 0;
 
         // Get the canvas element
         var gameCanvas = document.getElementById("gameCanvas");
@@ -82,14 +84,15 @@
         function advanceSnake() {
             const head = {x: snake[0].x + dx, y: snake[0].y + dy};
             snake.unshift(head);
-            snake.pop();
 
-            //const didEatFood = snake[0].x === foodX && snake[0].y === foodY;
-            //if (didEatFood) {
-            //    createFood();
-            //} else {
-            //    snake.pop();
-            //}
+            const didEatFood = snake[0].x === foodX && snake[0].y === foodY;
+            if (didEatFood) {
+                score +=10;
+                document.getElementById('score').innerHTML = score;
+                createFood();
+            } else {
+                snake.pop();
+            }
         }
 
         function changeDirection(event) {
