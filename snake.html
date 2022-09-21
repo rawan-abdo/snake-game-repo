@@ -5,7 +5,7 @@
 </head>
     <body>
         <div id = "score">0</div>
-        <canvas id="gameCanvas" width="300" height ="300"></canvas>
+        <canvas id="gameCanvas" width="500" height ="500"></canvas>
         <canvas id="leftCanvas" width="200" height ="500"></canvas>
         <canvas id="rightCanvas" width="200" height ="500"></canvas>
         
@@ -33,7 +33,7 @@
 
             #score {
               text-align: center;
-              font-size: 140px;
+              font-size: 100px;
               font-family: 'Antic Slab', serif;
             }
           </style>
@@ -41,16 +41,16 @@
             
         /** constants **/
         const CANVAS_BORDER_COLOUR = 'black';
-        const CANVAS_BACKGROUND_COLOUR = "white";
-        const SNAKE_COLOUR = 'lightgreen';
-        const SNAKE_BORDER_COLOUR = 'darkgreen';
+        const CANVAS_BACKGROUND_COLOUR = "lightgray";
+        const SNAKE_COLOUR = 'lightblue';
+        const SNAKE_BORDER_COLOUR = 'white';
         
         
         let snake = [
             {x: 150, y: 150},
             {x: 140, y: 150},
             {x: 130, y: 150},
-            {x: 120, y: 150},
+            {x: 120, y: 150},   
             {x: 110, y: 150},
         ];
 
@@ -225,7 +225,7 @@
         }
 
         function drawFood() {
-            ctx.fillStyle = 'red';
+            ctx.fillStyle = 'pink';
             ctx.strokestyle = 'darkred';
             ctx.fillRect(foodX, foodY, 10, 10);
             ctx.strokeRect(foodX, foodY, 10, 10);
